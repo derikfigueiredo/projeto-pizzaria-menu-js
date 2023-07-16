@@ -18,7 +18,20 @@ pizzaJson.map((item, index)=>{
         pizzaItem.querySelector(".pizza-item--name").innerHTML = item.name; //não utilize document.querySelector por
         //que você estaria selecionando a partir do documento todo, não especificamente do .pizza-item.
         pizzaItem.querySelector(".pizza-item--img img").src = item.img;
-        pizzaItem.querySelector(".pizza-item--price").innerHTML = parseFloat(`${item.price}`)+" R$";
+        pizzaItem.querySelector(".pizza-item--price").innerHTML = `R$ ${item.price.toFixed(2)}`;
+        pizzaItem.querySelector(".pizza-item--desc").innerHTML = item.description;
 
+        pizzaItem.querySelector("a").addEventListener("click", (e)=>{
+            e.preventDefault();
+
+            q(".pizzaWindowArea").style.opacity = 0;
+            q(".pizzaWindowArea").style.display = "flex";
+
+            setTimeout(()=>{
+               q(".pizzaWindowArea").style.opacity = 1;
+            }, 200);
+
+        });
+        
    q("main .pizza-area").append(pizzaItem);
 })
